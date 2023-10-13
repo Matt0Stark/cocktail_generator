@@ -59,3 +59,4 @@ searchNinjaApi(searchedDrinkName)
 //       console.log(data)
 //     })
 // }
+var myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
