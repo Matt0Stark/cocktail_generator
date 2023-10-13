@@ -1,0 +1,1 @@
+// JavaScript Functions that get called by all HTML pages
