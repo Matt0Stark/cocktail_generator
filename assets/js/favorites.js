@@ -1,0 +1,1 @@
+// Functions only needed for the favorites page (favorites.html)
