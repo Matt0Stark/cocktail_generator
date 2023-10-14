@@ -1,7 +1,67 @@
 // Functions only needed for the main page (index.html)
-var searchedDrinkName = "margarita";
 var h2El = document.querySelector("h2")
 
+
+// -------------------------------------------------------
+// BEGINING OF 21+ CODE
+// CODED BY STARK INDUSTRIES
+// -------------------------------------------------------
+var ageAppropriate = false;
+
+//yes button --> stores are approp answer as true under the key ageAnswer
+$(document).ready(function(){
+  $("#answer-yes").click(function(){
+    sessionStorage.setItem("ageAnswer", true);
+  });
+});
+//launches modal 21+ upon page load. this would also be assigned to window,
+//it should basically be all thats needed here, but we can adjust event timing around it if need be with show, shown, hide, hidden.  
+$(document).ready(function(){
+
+  // console.log("21+?");
+  // console.log(ageAppropriate);
+  var ageAnswer = sessionStorage.getItem("ageAnswer");
+
+  if(ageAnswer === null){
+    // console.log("was null setting to false");
+    ageAppropriate = false;
+    $("#myModal").modal("show");
+  } else {
+    ageAppropriate = JSON.parse(ageAnswer)
+    if(ageAppropriate === false){
+      $("#myModal").modal("show");
+    }
+  }
+});
+
+// calls the babyjail modal (when no selected from 21+ modal)
+$(document).ready(function(){
+  $("#answer-no").click(function(){
+    window.alert("Halt! You're goin' to Baby jail")
+    $("#myOtherModal").modal("show");
+  });
+});
+
+// media tags for modal
+// @media only screen and (max-width: 700px){
+//   .modal-content {
+//     width: 100%;
+//   }
+// }
+
+// -------------------------------------------------------
+// END OF 21+ CODE
+// -------------------------------------------------------
+
+
+
+
+
+// -------------------------------------------------------
+// BEGINING OF API CODE
+// CODED BY LUKE
+// -------------------------------------------------------
+var searchedDrinkName = "margarita";
 var drinkArray = [];
 // var drinkSearchArray = [
 //   {
@@ -26,7 +86,6 @@ var drinkArray = [];
 //     name: "west indian old fashioned"
 //   }
 // ];
-
 
 // Searches Ninja's Cocktail Api for specified drink name
 function searchNinjaApiByName(name) {
@@ -65,7 +124,6 @@ function searchNinjaApiByName(name) {
           .then(function () {
             return;
           })
-
 
     })
     .then(function () {
@@ -116,3 +174,7 @@ searchNinjaApiByName(searchedDrinkName)
 //   }
 
 // searchNinjaApiByName(searchedDrinkName)
+
+// -------------------------------------------------------
+// END OF API CODE
+// -------------------------------------------------------
