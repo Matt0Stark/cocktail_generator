@@ -1,5 +1,4 @@
 // Functions only needed for the main page (index.html)
-console.log("index.js loaded")
 var searchedDrinkName = "margarita";
 var h2El = document.querySelector("h2")
 
@@ -29,34 +28,91 @@ var drinkArray = [];
 // ];
 
 
-
-
 // Searches Ninja's Cocktail Api for specified drink name
-function searchNinjaApi(name) {
-  var requestUrl = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
-  fetch(requestUrl, {
-    headers: { 'X-Api-Key': 'HDpeNyqtTjwHQjF5lVs1Zg==pOwZrE93LfASTjer', "Content-Type": 'application/json'},
+function searchNinjaApiByName(name) {
+  var requestDrinkArray = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
+  fetch(requestDrinkArray, {
+    headers: { 'X-Api-Key': 'HDpeNyqtTjwHQjF5lVs1Zg==pOwZrE93LfASTjer', "Content-Type": 'application/json' },
   })
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      drinkArray.push(data)
-      console.log(drinkArray)
+      for (var i = 0; i < data.length; i++) {
+        drinkArray.push(data[i])
+      }
+      // console.log(drinkArray)
+    })
+
+
+    .then(function () {
+
+        var requestImgUrl = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkArray[0].name}`;
+        fetch(requestImgUrl)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            var imgUrl = "";
+            if (data.drinks === null) {
+              imgUrl = "no-img";
+            } else {
+              // Will always want 0 index from img API
+              imgUrl = data.drinks[0].strDrinkThumb;
+            }
+            drinkArray[0].url = imgUrl;
+          })
+          .then(function () {
+            return;
+          })
+
+
+    })
+    .then(function () {
+      console.log(drinkArray);
     })
 }
-searchNinjaApi(searchedDrinkName)
+searchNinjaApiByName(searchedDrinkName)
 
 
-// Searches CocktailDB Api for an image of the drink
-// function addImgFromCocktailDB() {
-//   var requestUrl = "www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita";
-//   fetch(requestUrl)
+
+// // Searches Ninja's Cocktail Api for specified drink name
+// function searchNinjaApiByName(name) {
+//   var requestUrl = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
+//   fetch(requestUrl, {
+//     headers: { 'X-Api-Key': 'HDpeNyqtTjwHQjF5lVs1Zg==pOwZrE93LfASTjer', "Content-Type": 'application/json' },
+//   })
 //     .then(function (response) {
 //       return response.json();
 //     })
 //     .then(function (data) {
-//       console.log(data)
+//       // drinkArray.push(data[0])
+//       // console.log("This is the data supplied by ninja")
+//       // console.log(data);
+//       addImgFromCocktailDB(data);
 //     })
 // }
-var myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
+
+// // Searches CocktailDB Api for an image of the drink and will output if an image was found or not
+// function addImgFromCocktailDB(array) {
+//   for (var i = 0; i < array.length; i++) {
+//     var requestUrlTwo = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${array[i].name}`;
+//     // console.log(`Drink name passed from ninja to cocktailDB ${array[2].name}`)
+//     fetch(requestUrlTwo)
+//       .then(function (response) {
+//         return response.json();
+//       })
+//       .then(function (data) {
+//         // console.log(data)
+//         if (data.drinks === null) {
+//           console.log(`Error: Img not found`)
+//         } else {
+//           // Will always want 0 from this list
+//           // console.log(`CocktailDB searched for an image of a ${data.drinks[0].strDrink}`)
+//           console.log(`${data.drinks[0].strDrink} Img url:${data.drinks[0].strDrinkThumb}`)
+//         }
+//       })
+//     }
+//   }
+
+// searchNinjaApiByName(searchedDrinkName)
