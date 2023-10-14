@@ -28,13 +28,26 @@ var drinkArray = [];
 //   }
 // ];
 
+
+
 //launches modal 21+ upon page load. this would also be assigned to window,
 //it should basically be all thats needed here, but we can adjust event timing around it if need be with show, shown, hide, hidden.  
 $(document).ready(function(){
   console.log("hi")
   $("#myModal").modal("show");
-
 });
+
+// calls the babyjail modal (when no selected from 21+ modal)
+$(document).ready(function(){
+  $("#answer-no").click(function(){
+    window.alert("Halt! You're goin' to Baby jail")
+    $("#myOtherModal").modal("show");
+  });
+});
+
+
+
+
 
 
 // Searches Ninja's Cocktail Api for specified drink name
