@@ -33,7 +33,7 @@ var drinkArray = [];
 //launches modal 21+ upon page load. this would also be assigned to window,
 //it should basically be all thats needed here, but we can adjust event timing around it if need be with show, shown, hide, hidden.  
 $(document).ready(function(){
-  console.log("hi")
+  console.log("21+?")
   $("#myModal").modal("show");
 });
 
@@ -44,6 +44,8 @@ $(document).ready(function(){
     $("#myOtherModal").modal("show");
   });
 });
+
+
 
 
 
@@ -77,5 +79,12 @@ searchNinjaApi(searchedDrinkName)
 //     .then(function (data) {
 //       console.log(data)
 //     })
+// }
+
+// media tags for modal
+// @media only screen and (max-width: 700px){
+//   .modal-content {
+//     width: 100%;
+//   }
 // }
 
