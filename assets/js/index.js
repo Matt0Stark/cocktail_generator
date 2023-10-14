@@ -28,7 +28,13 @@ var drinkArray = [];
 //   }
 // ];
 
+//launches modal 21+ upon page load. this would also be assigned to window,
+//it should basically be all thats needed here, but we can adjust event timing around it if need be with show, shown, hide, hidden.  
+$(document).ready(function(){
+  console.log("hi")
+  $("#myModal").modal("show");
 
+});
 
 
 // Searches Ninja's Cocktail Api for specified drink name
@@ -59,4 +65,4 @@ searchNinjaApi(searchedDrinkName)
 //       console.log(data)
 //     })
 // }
-var myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
+
