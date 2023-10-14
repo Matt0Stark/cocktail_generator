@@ -28,13 +28,46 @@ var drinkArray = [];
 //   }
 // ];
 
+var ageAppropriate = false;
+
+
+
+
+//yes button --> stores are approp answer as true under the key ageAnswer
+$(document).ready(function(){
+  $("#answer-yes").click(function(){
+    sessionStorage.setItem("ageAnswer", true);
+  });
+});
 //launches modal 21+ upon page load. this would also be assigned to window,
 //it should basically be all thats needed here, but we can adjust event timing around it if need be with show, shown, hide, hidden.  
 $(document).ready(function(){
-  console.log("hi")
-  $("#myModal").modal("show");
 
+  console.log("21+?");
+  console.log(ageAppropriate);
+  var ageAnswer = sessionStorage.getItem("ageAnswer");
+
+  if(ageAnswer === null){
+    console.log("was null setting to false");
+    ageAppropriate = false;
+    $("#myModal").modal("show");
+  } else {
+    ageAppropriate = JSON.parse(ageAnswer)
+    if(ageAppropriate === false){
+      $("#myModal").modal("show");
+    }
+  }
 });
+
+
+// calls the babyjail modal (when no selected from 21+ modal)
+$(document).ready(function(){
+  $("#answer-no").click(function(){
+    window.alert("Halt! You're goin' to Baby jail")
+    $("#myOtherModal").modal("show");
+  });
+});
+
 
 
 // Searches Ninja's Cocktail Api for specified drink name
@@ -64,5 +97,12 @@ searchNinjaApi(searchedDrinkName)
 //     .then(function (data) {
 //       console.log(data)
 //     })
+// }
+
+// media tags for modal
+// @media only screen and (max-width: 700px){
+//   .modal-content {
+//     width: 100%;
+//   }
 // }
 
