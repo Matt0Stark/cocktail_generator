@@ -61,8 +61,8 @@ $(document).ready(function () {
 let drinkArray = []
 
 // Searches Ninja's Cocktail Api for specified drink name
-function searchNinjaApiByName(name) {
-  let requestDrinkArray = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
+function searchNinjaApiByName(searchParameters) {
+  let requestDrinkArray = `https://api.api-ninjas.com/v1/cocktail?${searchParameters}`;
   fetch(requestDrinkArray, {
     headers: { 'X-Api-Key': 'HDpeNyqtTjwHQjF5lVs1Zg==pOwZrE93LfASTjer', "Content-Type": 'application/json' },
   })
@@ -73,11 +73,14 @@ function searchNinjaApiByName(name) {
     .then(function (data) {
       drinkArray = data;
     })
-    // Then "forEach" drink I call the request Img function
-    // I changed the requestImage function to then add the url key itself 
-    // instead of returning the value for this function to add it
+    // Then "forEach" drink, request Img function
+    // TODO: Move the empty array alert to display insted of the search array
     .then(function(){
+      if (drinkArray.length === 0) {
+        alert("No Drink Found")
+      } else {
       drinkArray.forEach(requestImage)
+      }
     })
     .then(function finalDrinksArray() {
       console.log(drinkArray)
@@ -101,7 +104,11 @@ function requestImage(drink) {
     })
 }
 
-searchNinjaApiByName("margarita")
+// TODO: We will need to adjust it so that depending on which button is clicked,
+// It either adds "name=" or "ingredients="
+// If multiple ingredients, it'll need to add a comma between each ingredient
+searchNinjaApiByName("name=margarita")
+// searchNinjaApiByName("ingredients=vodka,cola,simple syrup")
 
 
 // -------------------------------------------------------
