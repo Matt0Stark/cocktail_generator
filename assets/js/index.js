@@ -9,34 +9,34 @@ var h2El = document.querySelector("h2")
 var ageAppropriate = false;
 
 //yes button --> stores are approp answer as true under the key ageAnswer
-$(document).ready(function(){
-  $("#answer-yes").click(function(){
+$(document).ready(function () {
+  $("#answer-yes").click(function () {
     sessionStorage.setItem("ageAnswer", true);
   });
 });
 //launches modal 21+ upon page load. this would also be assigned to window,
 //it should basically be all thats needed here, but we can adjust event timing around it if need be with show, shown, hide, hidden.  
-$(document).ready(function(){
+$(document).ready(function () {
 
   // console.log("21+?");
   // console.log(ageAppropriate);
   var ageAnswer = sessionStorage.getItem("ageAnswer");
 
-  if(ageAnswer === null){
+  if (ageAnswer === null) {
     // console.log("was null setting to false");
     ageAppropriate = false;
     $("#myModal").modal("show");
   } else {
     ageAppropriate = JSON.parse(ageAnswer)
-    if(ageAppropriate === false){
+    if (ageAppropriate === false) {
       $("#myModal").modal("show");
     }
   }
 });
 
 // calls the babyjail modal (when no selected from 21+ modal)
-$(document).ready(function(){
-  $("#answer-no").click(function(){
+$(document).ready(function () {
+  $("#answer-no").click(function () {
     window.alert("Halt! You're goin' to Baby jail")
     $("#myOtherModal").modal("show");
   });
@@ -54,126 +54,55 @@ $(document).ready(function(){
 // -------------------------------------------------------
 
 
-
-
-
 // -------------------------------------------------------
 // BEGINING OF API CODE
 // CODED BY LUKE
 // -------------------------------------------------------
-var searchedDrinkName = "margarita";
-var drinkArray = [];
-// var drinkSearchArray = [
-//   {
-//   ingredients: [
-//       "3 oz Bourbon (or rye)",
-//       "1 cube Sugar (or 1 tsp simple syrup)",
-//       "3 ds Bitters, Angostura",
-//       "1 twst Lemon peel (as garnish)"
-//   ],
-//   instructions: "Wet sugar cube with bitters and a dash of soda or water in an old fashioned glass, muddle, add ice and whiskey, stir to dissolve thoroughly, garnish",
-//   name: "old fashioned"
-//   },
-//   {
-//     ingredients: [
-//         "1 oz Jamaican rum, Appleton 12",
-//         "1 oz Bitters, Angostura",
-//         "1/2 oz Demerara syrup (1:1)",
-//         "1/4 oz Bitters, Angostura orange",
-//         "1  Orange peel"
-//     ],
-//     instructions: "Stir, strain into an ice filled old fashioned glass.  Garnish with expressed orange peel.",
-//     name: "west indian old fashioned"
-//   }
-// ];
+let drinkArray = []
 
 // Searches Ninja's Cocktail Api for specified drink name
 function searchNinjaApiByName(name) {
-  var requestDrinkArray = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
+  let requestDrinkArray = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
   fetch(requestDrinkArray, {
     headers: { 'X-Api-Key': 'HDpeNyqtTjwHQjF5lVs1Zg==pOwZrE93LfASTjer', "Content-Type": 'application/json' },
   })
     .then(function (response) {
       return response.json();
     })
+    // Takes the search array and makes it the same as the array returned by the NinjaAPI
     .then(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        drinkArray.push(data[i])
-      }
-      // console.log(drinkArray)
+      drinkArray = data;
     })
-
-
-    .then(function () {
-
-        var requestImgUrl = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkArray[0].name}`;
-        fetch(requestImgUrl)
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (data) {
-            var imgUrl = "";
-            if (data.drinks === null) {
-              imgUrl = "no-img";
-            } else {
-              // Will always want 0 index from img API
-              imgUrl = data.drinks[0].strDrinkThumb;
-            }
-            drinkArray[0].url = imgUrl;
-          })
-          .then(function () {
-            return;
-          })
-
+    // Then "forEach" drink I call the request Img function
+    // I changed the requestImage function to then add the url key itself 
+    // instead of returning the value for this function to add it
+    .then(function(){
+      drinkArray.forEach(requestImage)
     })
-    .then(function () {
-      console.log(drinkArray);
+    .then(function finalDrinksArray() {
+      console.log(drinkArray)
     })
 }
-searchNinjaApiByName(searchedDrinkName)
 
+// Searches cocktailDB for a matching drink and if it finds one, it returns the url of that image
+function requestImage(drink) {
+  var requestImg = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drink.name}`;
+  fetch(requestImg)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function grabImgUrl(data) {
+      if (data.drinks === null) {
+        drink.url = "noImg";
+      } else {
+        var drinkUrl = data.drinks[0].strDrinkThumb;
+        drink.url = drinkUrl;
+      }
+    })
+}
 
+searchNinjaApiByName("margarita")
 
-// // Searches Ninja's Cocktail Api for specified drink name
-// function searchNinjaApiByName(name) {
-//   var requestUrl = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
-//   fetch(requestUrl, {
-//     headers: { 'X-Api-Key': 'HDpeNyqtTjwHQjF5lVs1Zg==pOwZrE93LfASTjer', "Content-Type": 'application/json' },
-//   })
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       // drinkArray.push(data[0])
-//       // console.log("This is the data supplied by ninja")
-//       // console.log(data);
-//       addImgFromCocktailDB(data);
-//     })
-// }
-
-// // Searches CocktailDB Api for an image of the drink and will output if an image was found or not
-// function addImgFromCocktailDB(array) {
-//   for (var i = 0; i < array.length; i++) {
-//     var requestUrlTwo = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${array[i].name}`;
-//     // console.log(`Drink name passed from ninja to cocktailDB ${array[2].name}`)
-//     fetch(requestUrlTwo)
-//       .then(function (response) {
-//         return response.json();
-//       })
-//       .then(function (data) {
-//         // console.log(data)
-//         if (data.drinks === null) {
-//           console.log(`Error: Img not found`)
-//         } else {
-//           // Will always want 0 from this list
-//           // console.log(`CocktailDB searched for an image of a ${data.drinks[0].strDrink}`)
-//           console.log(`${data.drinks[0].strDrink} Img url:${data.drinks[0].strDrinkThumb}`)
-//         }
-//       })
-//     }
-//   }
-
-// searchNinjaApiByName(searchedDrinkName)
 
 // -------------------------------------------------------
 // END OF API CODE
