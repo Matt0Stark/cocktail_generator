@@ -1,0 +1,31 @@
+body{
+  background-color: bisque;
+}
+
+header{
+  background-color: burlywood;
+  display: flex;
+  justify-content: center;
+}
+
+main{
+  background-color: burlywood;
+  display: flex;
+  justify-content: center;
+}
+
+#user-choice{
+  background-color: burlywood;
+}
+
+#results-box{
+
+}
+
+#drink-box{
+
+}
+
+#recents{
+
+}
