@@ -113,6 +113,7 @@ function searchNinjaApiByName(searchParameters) {
     })
     .then(function finalDrinksArray() {
       console.log(drinkArray)
+      displaySearch()
     })
 }
 
@@ -141,6 +142,66 @@ searchNinjaApiByName("name=margarita");
 // searchNinjaApiByName("ingredients=vodka,cola,simple syrup")
 
 
+
+
+
+
 // -------------------------------------------------------
 // END OF API CODE
 // -------------------------------------------------------
+
+
+// var drinkArray = [
+//   {
+//   ingredients: [
+//       "3 oz Bourbon (or rye)",
+//       "1 cube Sugar (or 1 tsp simple syrup)",
+//       "3 ds Bitters, Angostura",
+//       "1 twst Lemon peel (as garnish)"
+//   ],
+//   instructions: "Wet sugar cube with bitters and a dash of soda or water in an old fashioned glass, muddle, add ice and whiskey, stir to dissolve thoroughly, garnish",
+//   name: "old fashioned"
+//   url: "https://www.liquor.com/thmb/wm9ICT4sskWaeUONYmoCqiTEjLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__08113350__bourbon-old-fashioned-720x720-recipe-ade6f7780c304999be3577e565c9bcdd.jpg"
+//   },
+//   {
+//     ingredients: [
+//         "1 oz Jamaican rum, Appleton 12",
+//         "1 oz Bitters, Angostura",
+//         "1/2 oz Demerara syrup (1:1)",
+//         "1/4 oz Bitters, Angostura orange",
+//         "1  Orange peel"
+//     ],
+//     instructions: "Stir, strain into an ice filled old fashioned glass.  Garnish with expressed orange peel.",
+//     name: "west indian old fashioned",
+//     url: "https://hips.hearstapps.com/hmg-prod/images/delish-190816-white-russian-0119-landscape-pf-1568744178.jpg?crop=0.670xw:1.00xh;0.240xw,0&resize=1200:*"
+//   }
+// ];
+
+
+
+
+
+var displayElement = document.getElementById("drinkList");
+
+function displaySearch () {
+
+  
+  for (var i = 0; i < drinkArray.length; i++) {
+    var drink = drinkArray[i];
+    
+    var listItem = document.createElement("li");
+    
+    var nameHeading = document.createElement("h2");
+    nameHeading.textContent = drink.name;
+    
+    var pictureHere = document.getElementById("img");
+    pictureHere.src = drink.url;
+    
+    listItem.appendChild(nameHeading);
+    listItem.appendChild(pictureHere);
+    
+    displayElement.appendChild(listItem);
+  }
+}
+
+
