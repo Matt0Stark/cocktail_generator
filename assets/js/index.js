@@ -42,12 +42,16 @@ $(document).ready(function () {
     $("#myOtherModal").modal("show");
   });
 });
-if (ageAppropriate === true){
+
   var searchForm = $("#user-choice");
     searchForm.html(
-      '<form id="searching">' + '<p><input type= "text" placeholder = "drink name?" placeholder="type drink name">' +'<p><input type = "text" placeholder="ingredientone,ingredienttwo" id="ingredients">' + '<p><input type= "submit" value = "Submit">'
+      '<form id="searching">' + 'You can search by name' +  '<p><input type= "text" id= "nameInput" placeholder="type drink name">' + '<p> OR by the drink ingredients' + '<p><input type = "text" placeholder="ingredient one" id="ingredient1">' + '<p><input type = "text" placeholder="ingredient two" id="ingredient2">' +'<p><input type = "text" placeholder="ingredient three" id="ingredient3">' +  '<p><input type= "submit" value = "Submit">'
       );
-}
+    $("#searching").onsubmit = function(){
+      let searchName = document.getElementById(nameInput);
+      console.log(document.getElementById('nameInput'));
+      console.log(searchName);
+    }
 
 // media tags for modal
 // @media only screen and (max-width: 700px){
