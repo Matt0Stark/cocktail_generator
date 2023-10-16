@@ -33,12 +33,6 @@ $(document).ready(function () {
       $("#myModal").modal("show");
     }
   }
-  if (ageAppropriate === true){
-    var searchForm = $("#user-choice");
-      searchForm.html(
-        '<form id="searching">' + '<p><input type= "text" placeholder = "drink name?" placeholder="type drink name">' +'<p><input type = "text" placeholder="ingredientone,ingredienttwo" id="ingredients">' + '<p><input type= "submit" value = "Submit">'
-        );
-  }
 });
 
 // calls the babyjail modal (when no selected from 21+ modal)
@@ -48,6 +42,26 @@ $(document).ready(function () {
     $("#myOtherModal").modal("show");
   });
 });
+
+  var searchForm = $("#user-choice");
+    searchForm.html(
+      '<form id="searching">' + 'You can search by name' +  '<p><input type= "text" id= "nameInput" placeholder="type drink name">' + '<p> OR by the drink ingredients' + '<p><input type = "text" placeholder="ingredient one" id="ingredient1">' + '<p><input type = "text" placeholder="ingredient two" id="ingredient2">' +'<p><input type = "text" placeholder="ingredient three" id="ingredient3">' +  '<p><input type= "submit" value = "Submit">'
+      );
+
+      function handleSearchSubmit (event){
+        event.preventDefault();
+        console.log(searchName.val());
+        console.log(searchNinjaApiByName("name=searchName"));
+        console.log(item1.val());
+        console.log(item2.val());
+      }
+      var wholeForm = $('#searching')
+      var searchName = $('input[id="nameInput"]');
+      var item1 = $('input[id="ingredient1"');
+      var item2 = $('input[id="ingredient2"');
+      var item3 = $('input[id="ingredient3"');
+      wholeForm.on('submit',handleSearchSubmit);
+    
 
 // media tags for modal
 // @media only screen and (max-width: 700px){
@@ -114,7 +128,8 @@ function requestImage(drink) {
 // TODO: We will need to adjust it so that depending on which button is clicked,
 // It either adds "name=" or "ingredients="
 // If multiple ingredients, it'll need to add a comma between each ingredient
-searchNinjaApiByName("name=margarita")
+searchNinjaApiByName("name=margarita");
+// console.log(searchNinjaApiByName("name=$('searchName')"));
 // searchNinjaApiByName("ingredients=vodka,cola,simple syrup")
 
 
