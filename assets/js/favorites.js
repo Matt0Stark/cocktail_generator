@@ -20,3 +20,11 @@ function loadFavorites() {
 }
 
 loadFavorites();
+
+
+// remove favorite button
+$(document).ready(function(){
+    $("#answer-remove").click(function(){
+        // remove favorites function
+    })
+})
