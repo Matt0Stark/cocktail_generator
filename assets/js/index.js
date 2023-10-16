@@ -54,13 +54,35 @@ searchForm.html(
         console.log(searchName.val());
         console.log(item1.val());
         console.log(item2.val());
+        // Button One Calls This
         // searchNinjaApiByName("name=" +searchName.val());
+
+
+        // searchNinjaApiByName("ingredients=" + item1.val());
+        // Button 2 calls this
+        if (item1.val() === "") {
+          return "";
+        } else if  (item1.val() !== "" && item2.val() === "" && item3.val() === ""){
+          console.log("one ingredient")
+          searchNinjaApiByName("ingredients=" + item1.val())
+        } else if  (item1.val() !== "" && item2.val() !== "" && item3.val() === ""){
+          console.log("two ingredient")
+          searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val())
+        } else if  (item1.val() !== "" && item2.val() !== "" && item3.val() !== ""){
+          console.log("three ingredient")
+          searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
+        } else {
+          return "";
+        }
+
+
+
         // searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val());
-      if (searchName !== null && item1===null && item2===null && item3 === null){
-        searchNinjaApiByName("name=" +searchName.val());
-      } else if (searchName === null){
-        searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
-      }
+      // if (searchName !== null && item1===null && item2===null && item3 === null){
+      //   searchNinjaApiByName("name=" + searchName.val());
+      // } else if (searchName === null){
+      //   searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
+      // }
         
       }
       var wholeForm = $('#searching')
@@ -113,7 +135,7 @@ function searchNinjaApiByName(searchParameters) {
     })
     .then(function finalDrinksArray() {
       console.log(drinkArray)
-      displaySearch()
+      // displaySearch()
     })
 }
 
@@ -137,7 +159,7 @@ function requestImage(drink) {
 // TODO: We will need to adjust it so that depending on which button is clicked,
 // It either adds "name=" or "ingredients="
 // If multiple ingredients, it'll need to add a comma between each ingredient
-searchNinjaApiByName("name=margarita");
+// searchNinjaApiByName("name=margarita");
 // console.log(searchNinjaApiByName("name=$('searchName')"));
 // searchNinjaApiByName("ingredients=vodka,cola,simple syrup")
 
@@ -181,27 +203,27 @@ searchNinjaApiByName("name=margarita");
 
 
 
-var displayElement = document.getElementById("drinkList");
+// var displayElement = document.getElementById("drinkList");
 
-function displaySearch () {
+// function displaySearch () {
 
   
-  for (var i = 0; i < drinkArray.length; i++) {
-    var drink = drinkArray[i];
+//   for (var i = 0; i < drinkArray.length; i++) {
+//     var drink = drinkArray[i];
     
-    var listItem = document.createElement("li");
+//     var listItem = document.createElement("li");
     
-    var nameHeading = document.createElement("h2");
-    nameHeading.textContent = drink.name;
+//     var nameHeading = document.createElement("h2");
+//     nameHeading.textContent = drink.name;
     
-    var pictureHere = document.getElementById("img");
-    pictureHere.src = drink.url;
+//     var pictureHere = document.getElementById("img");
+//     pictureHere.src = drink.url;
     
-    listItem.appendChild(nameHeading);
-    listItem.appendChild(pictureHere);
+//     listItem.appendChild(nameHeading);
+//     listItem.appendChild(pictureHere);
     
-    displayElement.appendChild(listItem);
-  }
-}
+//     displayElement.appendChild(listItem);
+//   }
+// }
 
 
