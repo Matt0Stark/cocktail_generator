@@ -26,30 +26,23 @@ var drinkSearchArray = [
 ];
 
 
-// Get the HTML element by its ID
 var displayElement = document.getElementById("drinkList");
 
-// Loop through the drinkSearchArray
 for (var i = 0; i < drinkSearchArray.length; i++) {
   var drink = drinkSearchArray[i];
 
-  // Create a new list item for each drink
   var listItem = document.createElement("li");
 
-  // Create a heading for the name
   var nameHeading = document.createElement("h2");
   nameHeading.textContent = drink.name;
 
-  // Create a paragraph for the instructions
   var instructionsParagraph = document.createElement("p");
   instructionsParagraph.textContent = drink.instructions;
 
-  // Append the name heading and instructions paragraph to the list item
   listItem.appendChild(nameHeading);
   listItem.appendChild(instructionsParagraph);
 
-   // Append the list item to the <ul> element
-   displayElement.appendChild(listItem);
+  displayElement.appendChild(listItem);
   }
 
   
