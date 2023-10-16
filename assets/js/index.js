@@ -52,9 +52,16 @@ $(document).ready(function () {
       function handleSearchSubmit (event){
         event.preventDefault();
         console.log(searchName.val());
-        console.log(searchNinjaApiByName("name=searchName"));
         console.log(item1.val());
         console.log(item2.val());
+        // searchNinjaApiByName("name=" +searchName.val());
+        // searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val());
+      if (searchName !== null && item1===null && item2===null && item3 === null){
+        searchNinjaApiByName("name=" +searchName.val());
+      } else if (searchName === null){
+        searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
+      }
+        
       }
       var wholeForm = $('#searching')
       var searchName = $('input[id="nameInput"]');
