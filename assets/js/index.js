@@ -33,12 +33,6 @@ $(document).ready(function () {
       $("#myModal").modal("show");
     }
   }
-  if (ageAppropriate === true){
-    var searchForm = $("#user-choice");
-      searchForm.html(
-        '<form id="searching">' + '<p><input type= "text" placeholder = "drink name?" placeholder="type drink name">' +'<p><input type = "text" placeholder="ingredientone,ingredienttwo" id="ingredients">' + '<p><input type= "submit" value = "Submit">'
-        );
-  }
 });
 
 // calls the babyjail modal (when no selected from 21+ modal)
@@ -48,6 +42,12 @@ $(document).ready(function () {
     $("#myOtherModal").modal("show");
   });
 });
+if (ageAppropriate === true){
+  var searchForm = $("#user-choice");
+    searchForm.html(
+      '<form id="searching">' + '<p><input type= "text" placeholder = "drink name?" placeholder="type drink name">' +'<p><input type = "text" placeholder="ingredientone,ingredienttwo" id="ingredients">' + '<p><input type= "submit" value = "Submit">'
+      );
+}
 
 // media tags for modal
 // @media only screen and (max-width: 700px){
