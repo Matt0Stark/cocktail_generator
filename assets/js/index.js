@@ -51,7 +51,7 @@ $(document).ready(function () {
       function handleSearchSubmit (event){
         event.preventDefault();
         console.log(searchName.val());
-        console.log(searchNinjaApiByName("name=searchName"));
+        console.log(searchNinjaApiByName("name=" +searchName.val()));
         console.log(item1.val());
         console.log(item2.val());
       }
