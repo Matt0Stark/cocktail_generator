@@ -11,11 +11,13 @@ var ageAppropriate = false;
 //yes button --> stores are approp answer as true under the key ageAnswer
 $(document).ready(function () {
   $("#answer-yes").click(function () {
+
     sessionStorage.setItem("ageAnswer", true);
   });
 });
 //launches modal 21+ upon page load. this would also be assigned to window,
 //it should basically be all thats needed here, but we can adjust event timing around it if need be with show, shown, hide, hidden.  
+
 $(document).ready(function () {
 
   // console.log("21+?");
@@ -41,6 +43,26 @@ $(document).ready(function () {
     $("#myOtherModal").modal("show");
   });
 });
+
+  var searchForm = $("#user-choice");
+    searchForm.html(
+      '<form id="searching">' + 'You can search by name' +  '<p><input type= "text" id= "nameInput" placeholder="type drink name">' + '<p> OR by the drink ingredients' + '<p><input type = "text" placeholder="ingredient one" id="ingredient1">' + '<p><input type = "text" placeholder="ingredient two" id="ingredient2">' +'<p><input type = "text" placeholder="ingredient three" id="ingredient3">' +  '<p><input type= "submit" value = "Submit">'
+      );
+
+      function handleSearchSubmit (event){
+        event.preventDefault();
+        console.log(searchName.val());
+        console.log(searchNinjaApiByName("name=searchName"));
+        console.log(item1.val());
+        console.log(item2.val());
+      }
+      var wholeForm = $('#searching')
+      var searchName = $('input[id="nameInput"]');
+      var item1 = $('input[id="ingredient1"');
+      var item2 = $('input[id="ingredient2"');
+      var item3 = $('input[id="ingredient3"');
+      wholeForm.on('submit',handleSearchSubmit);
+    
 
 // media tags for modal
 // @media only screen and (max-width: 700px){
@@ -108,7 +130,8 @@ function requestImage(drink) {
 // TODO: We will need to adjust it so that depending on which button is clicked,
 // It either adds "name=" or "ingredients="
 // If multiple ingredients, it'll need to add a comma between each ingredient
-searchNinjaApiByName("name=margarita")
+searchNinjaApiByName("name=margarita");
+// console.log(searchNinjaApiByName("name=$('searchName')"));
 // searchNinjaApiByName("ingredients=vodka,cola,simple syrup")
 
 
