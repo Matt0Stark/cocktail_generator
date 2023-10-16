@@ -30,10 +30,7 @@ var drinkArray = [];
 
 var ageAppropriate = false;
 
-
-
-
-//yes button --> stores are approp answer as true under the key ageAnswer
+//yes button --> stores age approp answer as true under the key ageAnswer
 $(document).ready(function(){
   $("#answer-yes").click(function(){
     sessionStorage.setItem("ageAnswer", true);
@@ -58,7 +55,6 @@ $(document).ready(function(){
     }
   }
 });
-
 
 // calls the babyjail modal (when no selected from 21+ modal)
 $(document).ready(function(){
