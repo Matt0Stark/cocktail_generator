@@ -25,8 +25,11 @@
             <!-- going to need several inputs. Should we skeleton them here and just programatically fill it, or should all the inputs get defined in javascript??? One is definitely easier than the other. -->
         </section>
         <section id="results-box">
-            <div id="drink-box"></div>
+            <h1 id="drink-box">Search Results:</h1>
             <!-- probably going to want a flow of img boxes, but populated fromthe js -->
+                <ul id="drinkList">
+                    <img id = "pictureHere"></img>
+                </ul>
         </section>
         <section id="recents">
             <!-- carousel? or just flex rows of whatever -->
@@ -36,6 +39,7 @@
         </section>
     </main>
 
+    <button id="test">Test</button>
     <!-- 21+ modal -->
     <div class="modal fade" id="myModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="false">
         <div class="modal-dialog">
@@ -64,7 +68,7 @@
 
 
     <!-- babyjail modal -->
-    <div class="modal fade" id="myOtherModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="false">
+    <div class="modal fade" id="myOtherModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -75,6 +79,25 @@
                 </div>
                 <div class="modal-footer">
 
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="details" role="dialog" tabindex="-1" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title drink-name"></h4>
+                </div>
+                <img src="">
+                <div class="modal-body">
+                    <ul class="ingredients">Ingredients</ul>
+                    <p class="recipe"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="favBtn">Bottoms up!</button>
                 </div>
 
             </div>
@@ -94,6 +117,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>   
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/details.js"></script>
 
 
 </body>

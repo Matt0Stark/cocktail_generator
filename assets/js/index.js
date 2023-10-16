@@ -11,11 +11,13 @@ var ageAppropriate = false;
 //yes button --> stores are approp answer as true under the key ageAnswer
 $(document).ready(function () {
   $("#answer-yes").click(function () {
+
     sessionStorage.setItem("ageAnswer", true);
   });
 });
 //launches modal 21+ upon page load. this would also be assigned to window,
 //it should basically be all thats needed here, but we can adjust event timing around it if need be with show, shown, hide, hidden.  
+
 $(document).ready(function () {
 
   // console.log("21+?");
@@ -41,6 +43,33 @@ $(document).ready(function () {
     $("#myOtherModal").modal("show");
   });
 });
+
+  var searchForm = $("#user-choice");
+    searchForm.html(
+      '<form id="searching">' + 'You can search by name' +  '<p><input type= "text" id= "nameInput" placeholder="type drink name">' + '<p> OR by the drink ingredients' + '<p><input type = "text" placeholder="ingredient one" id="ingredient1">' + '<p><input type = "text" placeholder="ingredient two" id="ingredient2">' +'<p><input type = "text" placeholder="ingredient three" id="ingredient3">' +  '<p><input type= "submit" value = "Submit">'
+      );
+
+      function handleSearchSubmit (event){
+        event.preventDefault();
+        console.log(searchName.val());
+        console.log(item1.val());
+        console.log(item2.val());
+        // searchNinjaApiByName("name=" +searchName.val());
+        // searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val());
+      if (searchName !== null && item1===null && item2===null && item3 === null){
+        searchNinjaApiByName("name=" +searchName.val());
+      } else if (searchName === null){
+        searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
+      }
+        
+      }
+      var wholeForm = $('#searching')
+      var searchName = $('input[id="nameInput"]');
+      var item1 = $('input[id="ingredient1"');
+      var item2 = $('input[id="ingredient2"');
+      var item3 = $('input[id="ingredient3"');
+      wholeForm.on('submit',handleSearchSubmit);
+    
 
 // media tags for modal
 // @media only screen and (max-width: 700px){
@@ -84,6 +113,7 @@ function searchNinjaApiByName(searchParameters) {
     })
     .then(function finalDrinksArray() {
       console.log(drinkArray)
+      displaySearch()
     })
 }
 
@@ -107,10 +137,71 @@ function requestImage(drink) {
 // TODO: We will need to adjust it so that depending on which button is clicked,
 // It either adds "name=" or "ingredients="
 // If multiple ingredients, it'll need to add a comma between each ingredient
-searchNinjaApiByName("name=margarita")
+searchNinjaApiByName("name=margarita");
+// console.log(searchNinjaApiByName("name=$('searchName')"));
 // searchNinjaApiByName("ingredients=vodka,cola,simple syrup")
+
+
+
+
 
 
 // -------------------------------------------------------
 // END OF API CODE
 // -------------------------------------------------------
+
+
+// var drinkArray = [
+//   {
+//   ingredients: [
+//       "3 oz Bourbon (or rye)",
+//       "1 cube Sugar (or 1 tsp simple syrup)",
+//       "3 ds Bitters, Angostura",
+//       "1 twst Lemon peel (as garnish)"
+//   ],
+//   instructions: "Wet sugar cube with bitters and a dash of soda or water in an old fashioned glass, muddle, add ice and whiskey, stir to dissolve thoroughly, garnish",
+//   name: "old fashioned"
+//   url: "https://www.liquor.com/thmb/wm9ICT4sskWaeUONYmoCqiTEjLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__08113350__bourbon-old-fashioned-720x720-recipe-ade6f7780c304999be3577e565c9bcdd.jpg"
+//   },
+//   {
+//     ingredients: [
+//         "1 oz Jamaican rum, Appleton 12",
+//         "1 oz Bitters, Angostura",
+//         "1/2 oz Demerara syrup (1:1)",
+//         "1/4 oz Bitters, Angostura orange",
+//         "1  Orange peel"
+//     ],
+//     instructions: "Stir, strain into an ice filled old fashioned glass.  Garnish with expressed orange peel.",
+//     name: "west indian old fashioned",
+//     url: "https://hips.hearstapps.com/hmg-prod/images/delish-190816-white-russian-0119-landscape-pf-1568744178.jpg?crop=0.670xw:1.00xh;0.240xw,0&resize=1200:*"
+//   }
+// ];
+
+
+
+
+
+var displayElement = document.getElementById("drinkList");
+
+function displaySearch () {
+
+  
+  for (var i = 0; i < drinkArray.length; i++) {
+    var drink = drinkArray[i];
+    
+    var listItem = document.createElement("li");
+    
+    var nameHeading = document.createElement("h2");
+    nameHeading.textContent = drink.name;
+    
+    var pictureHere = document.getElementById("img");
+    pictureHere.src = drink.url;
+    
+    listItem.appendChild(nameHeading);
+    listItem.appendChild(pictureHere);
+    
+    displayElement.appendChild(listItem);
+  }
+}
+
+
