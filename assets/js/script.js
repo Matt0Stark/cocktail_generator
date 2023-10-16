@@ -28,6 +28,22 @@ function saveFavArray() {
   localStorage.setItem("cocktail-favorites", JSON.stringify(favoritesArray))
 }
 
+// Used to test saving to favorites
+
+// var testdrink =   {
+//   ingredients: [
+//       "50 ml tequila 100% agave",
+//       "20 ml triple sec",
+//       "15 ml freshly squeezed lime juice"
+//   ],
+//   instructions: "Add all ingredients into a shaker with ice. Shake and strain into a chilled cocktail glass.",
+//   name: "margarita",
+//   url: "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg"
+// }
+
+// addToFav(testdrink)
+
+
 /* -------------------------------------------------------
 End of functions that manager user's favorites
 ------------------------------------------------------- */
