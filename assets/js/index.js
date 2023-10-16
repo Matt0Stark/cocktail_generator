@@ -114,7 +114,7 @@ function requestImage(drink) {
 // TODO: We will need to adjust it so that depending on which button is clicked,
 // It either adds "name=" or "ingredients="
 // If multiple ingredients, it'll need to add a comma between each ingredient
-searchNinjaApiByName("name=margaritaZ")
+searchNinjaApiByName("name=margarita")
 // searchNinjaApiByName("ingredients=vodka,cola,simple syrup")
 
 
