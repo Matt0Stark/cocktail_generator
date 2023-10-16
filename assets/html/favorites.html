@@ -25,8 +25,28 @@
 
 
 
+    <!-- modal for the drink details of favorites -->
+    <!-- <div class="modal fade" id="details" role="dialog" tabindex="-1" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title drink-name"></h4>
+                </div>
+                <img src="">
+                <div class="modal-body">
+                    <ul class="ingredients">Ingredients</ul>
+                    <p class="recipe"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="favBtn">Bottoms up!</button>
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+
     <!-- modal for "are you sure you want to remove?" -->
-    <div class="modal fade" id="myModal" role="dialog" > 
+    <div class="modal fade" id="removeModal" role="dialog" > 
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -36,7 +56,7 @@
                     <p>Are you sure you want to remove this selection from your favorites?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Remove Drink</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="answer-remove">Remove Drink</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keep Drink</button>
                 </div>
             </div>
