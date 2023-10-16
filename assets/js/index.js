@@ -11,6 +11,7 @@ var ageAppropriate = false;
 //yes button --> stores are approp answer as true under the key ageAnswer
 $(document).ready(function () {
   $("#answer-yes").click(function () {
+
     sessionStorage.setItem("ageAnswer", true);
   });
 });
