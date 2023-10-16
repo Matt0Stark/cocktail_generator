@@ -16,6 +16,7 @@ $(document).ready(function () {
 });
 //launches modal 21+ upon page load. this would also be assigned to window,
 //it should basically be all thats needed here, but we can adjust event timing around it if need be with show, shown, hide, hidden.  
+
 $(document).ready(function () {
 
   // console.log("21+?");
@@ -31,6 +32,12 @@ $(document).ready(function () {
     if (ageAppropriate === false) {
       $("#myModal").modal("show");
     }
+  }
+  if (ageAppropriate === true){
+    var searchForm = $("#user-choice");
+      searchForm.html(
+        '<form id="searching">' + '<p><input type= "text" placeholder = "drink name?" placeholder="type drink name">' +'<p><input type = "text" placeholder="ingredientone,ingredienttwo" id="ingredients">' + '<p><input type= "submit" value = "Submit">'
+        );
   }
 });
 
