@@ -1,34 +1,44 @@
 body{
-  background-color: bisque;
+  background-color: #254252;
+  display: block;
 }
 
 header{
-  background-color: burlywood;
+  background-color: #171c2d;
   display: flex;
   justify-content: center;
 }
 
-.form {
-  background-color: burlywood;
+h1{
+  color: #e37239;
+}
+
+main{
+  background-color: #e37239;
   display: flex;
   justify-content: center;
 }
 
 #user-choice{
-  background-color: burlywood;
+  background-color: #f9982f;
 }
 
 #results-box{
+  background-color: #e37239;
+
 }
 
 #drink-box{
+  color: #171c2d;
 
 }
 
 #recents{
+  background-color: #eab56f;
 
 }
 
+/* JACKSON YOU CAN DELETE THIS IF YOU WANT */
 img {
   width: 100px;
 }

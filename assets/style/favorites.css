@@ -1,5 +1,18 @@
+body{
+  background-color: #e37239;
+}
+
+main{
+  background-color: #f9982f;
+  display: contents, space-evenly;
+  align-items: center;
+  padding: 30px;
+}
+
 h1 {
   text-align: center;
+  -webkit-text-fill-color: #254252;
+  -webkit-text-stroke: 5px, #e37239;
 }
 
 img {
@@ -7,7 +20,10 @@ img {
 }
 
 .drink-container {
-  border: 1px solid blue;
+  border: 5px solid #254252;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: block;
 }
 
 .drink-card {
@@ -17,4 +33,21 @@ img {
 
 #favoritesList {
   text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.recents{
+  display: flex;
+  align-items: center;
+}
+
+.button{
+  background-color: #171c2d;
+}
+
+#favoritesList{
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+

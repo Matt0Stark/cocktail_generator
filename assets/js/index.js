@@ -177,9 +177,6 @@ $(resultsBoxEl).on("click", ".searchButton", function(){
   var selectedDrink = (drinkArray[searchDrinkIndex])
   drinkNameEl.text(selectedDrink.name)
 
-  // --------------------------------
-  // URL ISSUE HERE
-   // --------------------------------
   console.log(selectedDrink.url)
   drinkImgEl.attr("src", selectedDrink.url)
   recipeEl.text(selectedDrink.instructions)
