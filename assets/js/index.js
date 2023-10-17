@@ -168,6 +168,13 @@ searchNinjaApiByName("name=long island");
 // -------------------------------------------------------
 
 
+
+// -------------------------------------------------------
+// BEGINNING OF SEARCH RESULTS MAIN
+// CODED BY GRIFFIN THOMAS
+// -------------------------------------------------------
+
+
 // var drinkArray = [
 //   {
 //   ingredients: [
@@ -194,6 +201,24 @@ searchNinjaApiByName("name=long island");
 //   }
 // ];
 
+
+var resultsContainer = $("#resultsList")
+var resultsArrayTwo;
+
+function displayResults() {
+resultsArrayTwo = JSON.parse(localStorage.getItem(""))
+
+
+for (var i = 0; i < resultsArrayTwo.length; i++)
+  $(favoritesContainer).append(
+      $("<div></div>").addClass
+
+
+    )
+
+
+
+}
 
 
 
@@ -222,3 +247,6 @@ searchNinjaApiByName("name=long island");
 // }
 
 
+//-------------------------------------
+// END OF SEARCH RESULTS MAIN
+//-------------------------------------
