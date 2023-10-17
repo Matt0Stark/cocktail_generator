@@ -130,7 +130,7 @@ function searchNinjaApiByName(searchParameters) {
     })
     .then(function finalDrinksArray() {
       console.log(drinkArray)
-      // displaySearch()
+      displaySearch(drinkArray)
     })
 }
 
@@ -154,7 +154,7 @@ function requestImage(drink) {
 // TODO: We will need to adjust it so that depending on which button is clicked,
 // It either adds "name=" or "ingredients="
 // If multiple ingredients, it'll need to add a comma between each ingredient
-searchNinjaApiByName("name=long island");
+// searchNinjaApiByName("name=long island");
 // console.log(searchNinjaApiByName("name=$('searchName')"));
 // searchNinjaApiByName("ingredients=vodka,cola,simple syrup")
 
@@ -165,6 +165,13 @@ searchNinjaApiByName("name=long island");
 
 // -------------------------------------------------------
 // END OF API CODE
+// -------------------------------------------------------
+
+
+
+// -------------------------------------------------------
+// BEGINNING OF SEARCH RESULTS MAIN
+// CODED BY GRIFFIN THOMAS
 // -------------------------------------------------------
 
 
@@ -195,6 +202,22 @@ searchNinjaApiByName("name=long island");
 // ];
 
 
+var drinkListEl = $("#drinkList")
+
+function displaySearch(searchResults) {
+  // console.log(searchResults[0].instructions)
+  for (var i = 0; i < searchResults.length; i++)
+  $(drinkListEl).append(
+    $("<div></div>").addClass("eachDrink").append(
+      $("<button></button>").addClass("searchButton").append(
+        $("<img></img>").attr("src", searchResults[i].url),
+        $("<p></p>").text(searchResults[i].name),
+        // console.log(searchResults[i].url)
+      )
+    )
+    )
+}
+
 
 
 
@@ -222,3 +245,6 @@ searchNinjaApiByName("name=long island");
 // }
 
 
+//-------------------------------------
+// END OF SEARCH RESULTS MAIN
+//-------------------------------------
