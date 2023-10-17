@@ -44,53 +44,48 @@ $(document).ready(function () {
   });
 });
 
-var searchForm = $("#user-choice");
-searchForm.html(
-  '<form id="searching">' + 'You can search by name' + '<p><input type= "text" id= "nameInput" placeholder="type drink name">' + '<p> OR by the drink ingredients' + '<p><input type = "text" placeholder="ingredient one" id="ingredient1">' + '<p><input type = "text" placeholder="ingredient two" id="ingredient2">' + '<p><input type = "text" placeholder="ingredient three" id="ingredient3">' + '<p><input type= "submit" value = "Submit">'
+
+var nameForm = $("#byName");
+nameForm.html(
+  '<form id="nameSearch">' + 'You can search by name'+ '<p><input type= "text" id= "nameInput" placeholder="type drink name">' + '<p><input type= "submit" value = "Submit">'
 );
+  function findName (event){
+    event.preventDefault();
+    searchNinjaApiByName("name=" +searchName.val());
+    console.log(searchName.val());
+  }; 
+  
+  var partsForm = $('#byIngredients')
+  partsForm.html('<form id="byParts">'+ '<p> OR by the drink ingredients' + '<p><input type = "text" placeholder="ingredient one" id="ingredient1">' + '<p><input type = "text" placeholder="ingredient two" id="ingredient2">' + '<p><input type = "text" placeholder="ingredient three" id="ingredient3">' + '<p><input type= "submit" value = "Submit">');
 
-      function handleSearchSubmit (event){
-        event.preventDefault();
-        console.log(searchName.val());
-        console.log(item1.val());
-        console.log(item2.val());
-        // Button One Calls This
-        // searchNinjaApiByName("name=" +searchName.val());
+  function findParts (event){
+    event.preventDefault();
+    console.log(item1.val());
+    console.log(item2.val());
+    console.log(item.val());
 
-
-        // searchNinjaApiByName("ingredients=" + item1.val());
-        // Button 2 calls this
-        if (item1.val() === "") {
-          return "";
-        } else if  (item1.val() !== "" && item2.val() === "" && item3.val() === ""){
-          console.log("one ingredient")
-          searchNinjaApiByName("ingredients=" + item1.val())
-        } else if  (item1.val() !== "" && item2.val() !== "" && item3.val() === ""){
-          console.log("two ingredient")
-          searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val())
-        } else if  (item1.val() !== "" && item2.val() !== "" && item3.val() !== ""){
-          console.log("three ingredient")
-          searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
-        } else {
-          return "";
-        }
-
-
-
-        // searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val());
-      // if (searchName !== null && item1===null && item2===null && item3 === null){
-      //   searchNinjaApiByName("name=" + searchName.val());
-      // } else if (searchName === null){
-      //   searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
-      // }
-        
-      }
-      var wholeForm = $('#searching')
+    if (item1.val() === "") {
+      return "";
+    } else if  (item1.val() !== "" && item2.val() === "" && item3.val() === ""){
+      console.log("one ingredient")
+      searchNinjaApiByName("ingredients=" + item1.val())
+    } else if  (item1.val() !== "" && item2.val() !== "" && item3.val() === ""){
+      console.log("two ingredient")
+      searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val())
+    } else if  (item1.val() !== "" && item2.val() !== "" && item3.val() !== ""){
+      console.log("three ingredient")
+      searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
+    } else {
+      return "";
+    }
+  }
+      // var wholeForm = $('#searching')
       var searchName = $('input[id="nameInput"]');
       var item1 = $('input[id="ingredient1"');
       var item2 = $('input[id="ingredient2"');
       var item3 = $('input[id="ingredient3"');
-      wholeForm.on('submit',handleSearchSubmit);
+      nameForm.on('submit',findName);
+      partsForm.on('submit',findParts);
     
 
 // media tags for modal
