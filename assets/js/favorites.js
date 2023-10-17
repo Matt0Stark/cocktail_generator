@@ -31,12 +31,20 @@ function displayFavorites() {
 $(favoritesContainer).on("click",".removeBtn", function () {
   // Find drink index of the drink associated with the remove button
   var favoritesIndex = parseInt($(this).attr("data-index"));
-  // Remove that index from the array
-  favoritesArrayTwo.splice(favoritesIndex, 1)
-  // Save array back to local storaghe
-  localStorage.setItem("cocktail-favorites", JSON.stringify(favoritesArrayTwo))
-  // Call the displayFavorites function to display the new favorites array
-  displayFavorites()
+  // Call Modal and pass through index of button clicked
+  $(removeModal).modal("show")
+
+  // remove favorite button
+  $(document).ready(function () {
+    $("#answer-remove").click(function () {
+    // Remove that index from the array
+    favoritesArrayTwo.splice(favoritesIndex, 1)
+    // Save array back to local storage
+    localStorage.setItem("cocktail-favorites", JSON.stringify(favoritesArrayTwo))
+    // Call the displayFavorites function to display the new favorites array
+    displayFavorites()
+    })
+  })
 })
 
 displayFavorites();
@@ -44,11 +52,4 @@ displayFavorites();
 // Listens for click of drink cards
 $(favoritesContainer).on("click", ".drink-card", function () {
   console.log("card btn clicked")
-})
-
-// remove favorite button
-$(document).ready(function () {
-  $("#answer-remove").click(function () {
-    // remove favorites function
-  })
 })
