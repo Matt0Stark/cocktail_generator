@@ -148,7 +148,7 @@ function requestImage(drink) {
     })
     .then(function grabImgUrl(data) {
       if (data.drinks === null) {
-        drink.url = "noImg";
+        drink.url = "../images/whiterussian.png";
       } else {
         var drinkUrl = data.drinks[0].strDrinkThumb;
         drink.url = drinkUrl;
@@ -159,7 +159,7 @@ function requestImage(drink) {
 // TODO: We will need to adjust it so that depending on which button is clicked,
 // It either adds "name=" or "ingredients="
 // If multiple ingredients, it'll need to add a comma between each ingredient
-// searchNinjaApiByName("name=margarita");
+searchNinjaApiByName("name=long island");
 // console.log(searchNinjaApiByName("name=$('searchName')"));
 // searchNinjaApiByName("ingredients=vodka,cola,simple syrup")
 
