@@ -8,7 +8,7 @@ header{
   justify-content: center;
 }
 
-main{
+.form {
   background-color: burlywood;
   display: flex;
   justify-content: center;
@@ -19,7 +19,6 @@ main{
 }
 
 #results-box{
-
 }
 
 #drink-box{
@@ -28,4 +27,8 @@ main{
 
 #recents{
 
+}
+
+img {
+  width: 100px;
 }
