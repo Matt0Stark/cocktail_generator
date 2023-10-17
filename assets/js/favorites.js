@@ -1,5 +1,11 @@
 // Functions only needed for the favorites page (favorites.html)
 var favoritesContainer = $("#favoritesList")
+var drinkNameEl = $(".drink-name")
+var drinkImgEl = $(".drink-image")
+var ingredientsListEl = $(".ingredients")
+var recipeEl = $(".recipe")
+
+
 var favoritesArrayTwo;
 
 // Loads from local storage and displays favorites on favorites webpage
@@ -20,7 +26,7 @@ function displayFavorites() {
         $("<button></button>").addClass("drink-card").append(
           $("<img></img>").attr("src", favoritesArrayTwo[i].url),
           $("<p></p>").text(favoritesArrayTwo[i].name),
-        )
+        ).attr("data-index", i)
       ).append(
         $("<button></button>").addClass("removeBtn").attr("data-index", i).text("remove")
       )
@@ -28,15 +34,22 @@ function displayFavorites() {
 }
 
 // Listens for click on the remove buttons
-$(favoritesContainer).on("click",".removeBtn", function () {
+$(favoritesContainer).on("click", ".removeBtn", function () {
   // Find drink index of the drink associated with the remove button
   var favoritesIndex = parseInt($(this).attr("data-index"));
-  // Remove that index from the array
-  favoritesArrayTwo.splice(favoritesIndex, 1)
-  // Save array back to local storaghe
-  localStorage.setItem("cocktail-favorites", JSON.stringify(favoritesArrayTwo))
-  // Call the displayFavorites function to display the new favorites array
-  displayFavorites()
+  // Call Modal and pass through index of button clicked
+  $("#removeModal").modal("show")
+  // remove favorite button
+  $(document).ready(function () {
+    $("#answer-remove").click(function () {
+      // Remove that index from the array
+      favoritesArrayTwo.splice(favoritesIndex, 1)
+      // Save array back to local storage
+      localStorage.setItem("cocktail-favorites", JSON.stringify(favoritesArrayTwo))
+      // Call the displayFavorites function to display the new favorites array
+      displayFavorites()
+    })
+  })
 })
 
 displayFavorites();
@@ -44,11 +57,19 @@ displayFavorites();
 // Listens for click of drink cards
 $(favoritesContainer).on("click", ".drink-card", function () {
   console.log("card btn clicked")
-})
+  var drinkIndex = (parseInt($(this).attr("data-index")))
+  var selectedDrink = (favoritesArrayTwo[drinkIndex])
+  drinkNameEl.text(selectedDrink.name)
 
-// remove favorite button
-$(document).ready(function () {
-  $("#answer-remove").click(function () {
-    // remove favorites function
-  })
+  drinkImgEl.attr("src", selectedDrink.url)
+  ingredientsListEl.empty()
+  for (var i = 0; i < selectedDrink.ingredients.length; i++){
+
+    ingredientsListEl.append(
+      $("<li></li>").text(selectedDrink.ingredients[i])
+    )
+  }
+  // ingredientsListEl.text(selectedDrink.ingredients)
+  recipeEl.text(selectedDrink.instructions)
+  $("#fav-drink-details").modal("show")
 })
