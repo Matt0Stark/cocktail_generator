@@ -10,7 +10,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style/style.css">
     <title>Cocktail Finder</title>
-    
+
 </head>
 <header>
     <h1>Drinks Generator</h1>
@@ -21,18 +21,20 @@
 
 <body>
     <main>
-        <section id="byName">
-            
-        </section>
-        <section id="byIngredients">
+        <section class="form">
+            <div id="byName">
 
+            </div>
+            <div id="byIngredients">
+
+            </div>
         </section>
         <section id="results-box">
             <h1 id="drink-box">Search Results:</h1>
             <!-- probably going to want a flow of img boxes, but populated fromthe js -->
-                <div id="drinkList">
-                    
-                </div>
+            <div id="drinkList">
+
+            </div>
         </section>
         <section id="recents">
             <!-- carousel? or just flex rows of whatever -->
@@ -42,9 +44,9 @@
         </section>
     </main>
 
-    <button id="test">Test</button>
     <!-- 21+ modal -->
-    <div class="modal fade" id="myModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="false">
+    <div class="modal fade" id="myModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -54,10 +56,12 @@
                     <p>Are you 21 years of age, or older?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="answer-yes">Yes, I promise *on my life*</button>
-<!-- closes the modal and? -->
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="answer-no">WAA! Im just a baby</button>
-<!-- closes the modal and opens the babyjail modal -->
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="answer-yes">Yes, I promise
+                        *on my life*</button>
+                    <!-- closes the modal and? -->
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="answer-no">WAA! Im just a
+                        baby</button>
+                    <!-- closes the modal and opens the babyjail modal -->
                 </div>
 
             </div>
@@ -71,14 +75,16 @@
 
 
     <!-- babyjail modal -->
-    <div class="modal fade" id="myOtherModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="myOtherModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title">You're In Baby Jail</h1>
                 </div>
                 <div class="modal-body">
-                    <img src="./assets/images/babyjail.jpg" class="img-responsive" alt="baby jail" style="width:100%;max-width:300px">
+                    <img src="./assets/images/babyjail.jpg" class="img-responsive" alt="baby jail"
+                        style="width:100%;max-width:300px">
                 </div>
                 <div class="modal-footer">
 
@@ -88,19 +94,20 @@
         </div>
     </div>
 
-    <div class="modal fade" id="details" role="dialog" tabindex="-1" aria-hidden="false">
+    <div class="modal fade" id="searched-drink-details" role="dialog" tabindex="-1" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title drink-name"></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
                 </div>
-                <img src="">
+                <img src="" class="drink-image">
                 <div class="modal-body">
                     <ul class="ingredients">Ingredients</ul>
                     <p class="recipe"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="favBtn">Bottoms up!</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="favBtn">Add to Favorites</button>
                 </div>
 
             </div>
@@ -117,10 +124,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/index.js"></script>
-    <script src="./assets/js/details.js"></script>
 
 
 </body>

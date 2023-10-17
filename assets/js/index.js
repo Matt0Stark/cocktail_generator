@@ -1,6 +1,7 @@
 // Functions only needed for the main page (index.html)
 var h2El = document.querySelector("h2")
 
+// var drinkSearchArray;
 
 // -------------------------------------------------------
 // BEGINING OF 21+ CODE
@@ -60,9 +61,7 @@ nameForm.html(
 
   function findParts (event){
     event.preventDefault();
-    console.log(item1.val());
-    console.log(item2.val());
-    console.log(item.val());
+
 
     if (item1.val() === "") {
       return "";
@@ -88,13 +87,6 @@ nameForm.html(
       partsForm.on('submit',findParts);
     
 
-// media tags for modal
-// @media only screen and (max-width: 700px){
-//   .modal-content {
-//     width: 100%;
-//   }
-// }
-
 // -------------------------------------------------------
 // END OF 21+ CODE
 // -------------------------------------------------------
@@ -102,67 +94,45 @@ nameForm.html(
 
 // -------------------------------------------------------
 // BEGINING OF API CODE
-// CODED BY LUKE
+// Assisted by Katie
 // -------------------------------------------------------
 let drinkArray = []
 
 // Searches Ninja's Cocktail Api for specified drink name
-function searchNinjaApiByName(searchParameters) {
+async function searchNinjaApiByName(searchParameters) {
   let requestDrinkArray = `https://api.api-ninjas.com/v1/cocktail?${searchParameters}`;
-  fetch(requestDrinkArray, {
+  let response = await fetch(requestDrinkArray, {
     headers: { 'X-Api-Key': 'HDpeNyqtTjwHQjF5lVs1Zg==pOwZrE93LfASTjer', "Content-Type": 'application/json' },
   })
-    .then(function (response) {
-      return response.json();
-    })
-    // Takes the search array and makes it the same as the array returned by the NinjaAPI
-    .then(function (data) {
-      drinkArray = data;
-    })
-    // Then "forEach" drink, request Img function
-    // TODO: Move the empty array alert to display insted of the search array
-    .then(function () {
-      if (drinkArray.length === 0) {
-        alert("No Drink Found")
-      } else {
-        drinkArray.forEach(requestImage)
-      }
-    })
-    .then(function finalDrinksArray() {
-      console.log(drinkArray)
-      displaySearch(drinkArray)
-    })
+   
+  let data = await response.json();
+  drinkArray = data
+  if (drinkArray.length === 0) {
+    alert("No Drink Found")
+  } else {
+    drinkArray = await Promise.all(drinkArray.map(requestImage))
+  }
+  displaySearch(drinkArray)
 }
+
 
 // Searches cocktailDB for a matching drink and if it finds one, it returns the url of that image
 function requestImage(drink) {
   var requestImg = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drink.name}`;
-  fetch(requestImg)
+  return fetch(requestImg)
     .then(function (response) {
       return response.json();
     })
     .then(function grabImgUrl(data) {
       if (data.drinks === null) {
-        drink.url = "../images/whiterussian.png";
+        drink.url = "./assets/images/whiterussian.png";
       } else {
         var drinkUrl = data.drinks[0].strDrinkThumb;
         drink.url = drinkUrl;
       }
+      return drink
     })
 }
-
-// TODO: We will need to adjust it so that depending on which button is clicked,
-// It either adds "name=" or "ingredients="
-// If multiple ingredients, it'll need to add a comma between each ingredient
-// searchNinjaApiByName("name=long island");
-// console.log(searchNinjaApiByName("name=$('searchName')"));
-// searchNinjaApiByName("ingredients=vodka,cola,simple syrup")
-
-
-
-
-
-
 // -------------------------------------------------------
 // END OF API CODE
 // -------------------------------------------------------
@@ -174,77 +144,59 @@ function requestImage(drink) {
 // CODED BY GRIFFIN THOMAS
 // -------------------------------------------------------
 
-
-// var drinkArray = [
-//   {
-//   ingredients: [
-//       "3 oz Bourbon (or rye)",
-//       "1 cube Sugar (or 1 tsp simple syrup)",
-//       "3 ds Bitters, Angostura",
-//       "1 twst Lemon peel (as garnish)"
-//   ],
-//   instructions: "Wet sugar cube with bitters and a dash of soda or water in an old fashioned glass, muddle, add ice and whiskey, stir to dissolve thoroughly, garnish",
-//   name: "old fashioned"
-//   url: "https://www.liquor.com/thmb/wm9ICT4sskWaeUONYmoCqiTEjLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__05__08113350__bourbon-old-fashioned-720x720-recipe-ade6f7780c304999be3577e565c9bcdd.jpg"
-//   },
-//   {
-//     ingredients: [
-//         "1 oz Jamaican rum, Appleton 12",
-//         "1 oz Bitters, Angostura",
-//         "1/2 oz Demerara syrup (1:1)",
-//         "1/4 oz Bitters, Angostura orange",
-//         "1  Orange peel"
-//     ],
-//     instructions: "Stir, strain into an ice filled old fashioned glass.  Garnish with expressed orange peel.",
-//     name: "west indian old fashioned",
-//     url: "https://hips.hearstapps.com/hmg-prod/images/delish-190816-white-russian-0119-landscape-pf-1568744178.jpg?crop=0.670xw:1.00xh;0.240xw,0&resize=1200:*"
-//   }
-// ];
-
-
 var drinkListEl = $("#drinkList")
 
 function displaySearch(searchResults) {
-  // console.log(searchResults[0].instructions)
+  $(drinkListEl).empty();
   for (var i = 0; i < searchResults.length; i++)
   $(drinkListEl).append(
     $("<div></div>").addClass("eachDrink").append(
       $("<button></button>").addClass("searchButton").append(
         $("<img></img>").attr("src", searchResults[i].url),
         $("<p></p>").text(searchResults[i].name),
-        // console.log(searchResults[i].url)
-      )
+        console.log(searchResults[i].url)
+      ).attr("data-index", i)
     )
     )
 }
 
-
-
-
-// var displayElement = document.getElementById("drinkList");
-
-// function displaySearch () {
-
-  
-//   for (var i = 0; i < drinkArray.length; i++) {
-//     var drink = drinkArray[i];
-    
-//     var listItem = document.createElement("li");
-    
-//     var nameHeading = document.createElement("h2");
-//     nameHeading.textContent = drink.name;
-    
-//     var pictureHere = document.getElementById("img");
-//     pictureHere.src = drink.url;
-    
-//     listItem.appendChild(nameHeading);
-//     listItem.appendChild(pictureHere);
-    
-//     displayElement.appendChild(listItem);
-//   }
-// }
-
-
 //-------------------------------------
 // END OF SEARCH RESULTS MAIN
 //-------------------------------------
+
+var resultsBoxEl = $("#results-box")
+var drinkNameEl = $(".drink-name")
+var drinkImgEl = $(".drink-image")
+var ingredientsListEl = $(".ingredients")
+var recipeEl = $(".recipe")
+
+var saveButtonEl = $("#searched-drink-details")
+
+$(resultsBoxEl).on("click", ".searchButton", function(){
+  var searchDrinkIndex = (parseInt($(this).attr("data-index")))
+  var selectedDrink = (drinkArray[searchDrinkIndex])
+  drinkNameEl.text(selectedDrink.name)
+
+  console.log(selectedDrink.url)
+  drinkImgEl.attr("src", selectedDrink.url)
+  recipeEl.text(selectedDrink.instructions)
+
+  ingredientsListEl.empty()
+  for (var i = 0; i < selectedDrink.ingredients.length; i++){
+    ingredientsListEl.append(
+      $("<li></li>").text(selectedDrink.ingredients[i])
+    )
+  }
+  recipeEl.text(selectedDrink.instructions)
+  // Call modal
+  $("#searched-drink-details").modal("show")
+
+  // Add to favorites button
+  $(saveButtonEl).on("click", "#favBtn", function(){
+    console.log("save button clicked")
+  
+    addToFav(selectedDrink)
+  })
+  
+
+})
