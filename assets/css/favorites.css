@@ -1,0 +1,20 @@
+h1 {
+  text-align: center;
+}
+
+img {
+  width: 100%;
+}
+
+.drink-container {
+  border: 1px solid blue;
+}
+
+.drink-card {
+  padding: 0px;
+  font-size: 1.3rem;
+}
+
+#favoritesList {
+  text-align: center;
+}
