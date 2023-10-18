@@ -31,3 +31,14 @@ THEN I am presented with a list / grid of photos of the cocktails I've saved
 
 WHEN I view a cocktails recipe
 THEN I it is added to my most recently viewed at the bottom of the page
+
+
+
+## Screen Shots
+![screenshot](./assets/images/cocktail_screenshot1.png)
+![screenshot](./assets/images/cocktail_screenshot2.png)
+![screenshot](./assets/images/cocktail_screenshot3.png)
+![screenshot](./assets/images/cocktail_screenshot4.png)
+![screenshot](./assets/images/cocktail_screenshot5.png)
+![screenshot](./assets/images/cocktail_screenshot6.png)
+![screenshot](./assets/images/cocktail_screenshot7.png)
