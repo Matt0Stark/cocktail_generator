@@ -23,7 +23,7 @@ function displayFavorites() {
   for (var i = 0; i < favoritesArrayTwo.length; i++)
     $(favoritesContainer).append(
       $("<div></div>").addClass("drink-container col-6 col-md-3 col-lg-2").append(
-        $("<button></button>").addClass("drink-card").append(
+        $("<div></div>").addClass("drink-card").append(
           $("<img></img>").attr("src", favoritesArrayTwo[i].url.replace("./assets", "..")),
           $("<p></p>").text(favoritesArrayTwo[i].name),
         ).attr("data-index", i)
