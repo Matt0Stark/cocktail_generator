@@ -5,7 +5,6 @@ var h2El = document.querySelector("h2")
 
 // -------------------------------------------------------
 // BEGINING OF 21+ CODE
-// CODED BY STARK INDUSTRIES
 // -------------------------------------------------------
 var ageAppropriate = false;
 
@@ -94,7 +93,6 @@ nameForm.html(
 
 // -------------------------------------------------------
 // BEGINING OF API CODE
-// Assisted by Katie
 // -------------------------------------------------------
 let drinkArray = []
 
@@ -140,8 +138,7 @@ function requestImage(drink) {
 
 
 // -------------------------------------------------------
-// BEGINNING OF SEARCH RESULTS MAIN
-// CODED BY GRIFFIN THOMAS
+// BEGINNING OF SEARCH RESULTS
 // -------------------------------------------------------
 
 var drinkListEl = $("#drinkList")
