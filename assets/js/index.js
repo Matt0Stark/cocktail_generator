@@ -1,5 +1,5 @@
 // Functions only needed for the main page (index.html)
-var h2El = document.querySelector("h2")
+// var h2El = document.querySelector("h2")
 
 // var drinkSearchArray;
 
@@ -47,41 +47,50 @@ $(document).ready(function () {
 
 var nameForm = $("#byName");
 nameForm.html(
-  '<form id="nameSearch">' + 'You can search by name'+ '<p><input type= "text" id= "nameInput" placeholder="type drink name">' + '<p><input type= "submit" value = "Submit">'
+  '<form id="nameSearch">' + '<p>You can search by name' + '<p><input type= "text" id= "nameInput" placeholder="type drink name">' + '<p><input type= "submit" value = "Submit">'
 );
-  function findName (event){
-    event.preventDefault();
-    searchNinjaApiByName("name=" +searchName.val());
-    console.log(searchName.val());
-  }; 
-  
-  var partsForm = $('#byIngredients')
-  partsForm.html('<form id="byParts">'+ '<p> OR by the drink ingredients' + '<p><input type = "text" placeholder="ingredient one" id="ingredient1">' + '<p><input type = "text" placeholder="ingredient two" id="ingredient2">' + '<p><input type = "text" placeholder="ingredient three" id="ingredient3">' + '<p><input type= "submit" value = "Submit">');
 
-  function findParts (event){
-    event.preventDefault();
+function findName(event) {
+  event.preventDefault();
+  searchNinjaApiByName("name=" + searchName.val());
+  searchName.val("")
+  item1.val("")
+  item2.val("")
+  item3.val("")
+  console.log(searchName.val());
+};
+
+var partsForm = $('#byIngredients')
+partsForm.html('<form id="byParts">' + '<p> OR by the drink ingredients' + '<p><input type = "text" placeholder="ingredient one" id="ingredient1">' + '<p><input type = "text" placeholder="ingredient two" id="ingredient2">' + '<p><input type = "text" placeholder="ingredient three" id="ingredient3">' + '<p><input type= "submit" value = "Submit">');
+
+function findParts(event) {
+  event.preventDefault();
 
 
-    if (item1.val() === "") {
-      return "";
-    } else if  (item1.val() !== "" && item2.val() === "" && item3.val() === ""){
-      searchNinjaApiByName("ingredients=" + item1.val())
-    } else if  (item1.val() !== "" && item2.val() !== "" && item3.val() === ""){
-      searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val())
-    } else if  (item1.val() !== "" && item2.val() !== "" && item3.val() !== ""){
-      searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
-    } else {
-      return "";
-    }
+  if (item1.val() === "") {
+    return "";
+  } else if (item1.val() !== "" && item2.val() === "" && item3.val() === "") {
+    searchNinjaApiByName("ingredients=" + item1.val())
+  } else if (item1.val() !== "" && item2.val() !== "" && item3.val() === "") {
+    searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val())
+  } else if (item1.val() !== "" && item2.val() !== "" && item3.val() !== "") {
+    searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
+  } else {
+    return "";
   }
-      // var wholeForm = $('#searching')
-      var searchName = $('input[id="nameInput"]');
-      var item1 = $('input[id="ingredient1"');
-      var item2 = $('input[id="ingredient2"');
-      var item3 = $('input[id="ingredient3"');
-      nameForm.on('submit',findName);
-      partsForm.on('submit',findParts);
-    
+  searchName.val("")
+  item1.val("")
+  item2.val("")
+  item3.val("")
+}
+// var wholeForm = $('#searching')
+var searchName = $('input[id="nameInput"]');
+var item1 = $('input[id="ingredient1"');
+var item2 = $('input[id="ingredient2"');
+var item3 = $('input[id="ingredient3"');
+nameForm.on('submit', findName);
+partsForm.on('submit', findParts);
+
 
 // -------------------------------------------------------
 // END OF 21+ CODE
@@ -99,7 +108,7 @@ async function searchNinjaApiByName(searchParameters) {
   let response = await fetch(requestDrinkArray, {
     headers: { 'X-Api-Key': 'HDpeNyqtTjwHQjF5lVs1Zg==pOwZrE93LfASTjer', "Content-Type": 'application/json' },
   })
-   
+
   let data = await response.json();
   drinkArray = data
   if (drinkArray.length === 0) {
@@ -143,14 +152,14 @@ var drinkListEl = $("#drinkList")
 function displaySearch(searchResults) {
   $(drinkListEl).empty();
   for (var i = 0; i < searchResults.length; i++)
-  $(drinkListEl).append(
-    $("<div></div>").addClass("eachDrink").append(
-      $("<button></button>").addClass("searchButton").append(
-        $("<img></img>").attr("src", searchResults[i].url),
-        $("<p></p>").text(searchResults[i].name),
-      ).attr("data-index", i)
-    )
-    )
+    $(drinkListEl).append(
+      $("<div></div>").addClass("eachDrink col-6 col-md-3 col-lg-2").append(
+        $("<button></button>").addClass("searchButton").append(
+          $("<img></img>").attr("src", searchResults[i].url),
+          $("<p></p>").text(searchResults[i].name),
+        ).attr("data-index", i)
+      )
+    ).addClass("row")
 }
 
 //-------------------------------------
@@ -165,7 +174,7 @@ var recipeEl = $(".recipe")
 
 var saveButtonEl = $("#searched-drink-details")
 
-$(resultsBoxEl).off("click").on("click", ".searchButton", function(){
+$(resultsBoxEl).off("click").on("click", ".searchButton", function () {
   var searchDrinkIndex = (parseInt($(this).attr("data-index")))
   var selectedDrink = (drinkArray[searchDrinkIndex])
 
@@ -174,7 +183,7 @@ $(resultsBoxEl).off("click").on("click", ".searchButton", function(){
   drinkImgEl.attr("src", selectedDrink.url)
   recipeEl.text(selectedDrink.instructions)
   ingredientsListEl.empty()
-  for (var i = 0; i < selectedDrink.ingredients.length; i++){
+  for (var i = 0; i < selectedDrink.ingredients.length; i++) {
     ingredientsListEl.append(
       $("<li></li>").text(selectedDrink.ingredients[i])
     )
@@ -185,9 +194,9 @@ $(resultsBoxEl).off("click").on("click", ".searchButton", function(){
   $("#searched-drink-details").modal("show")
 
   // Add to favorites button
-  $(saveButtonEl).off().on("click", "#favBtn", function(event){
+  $(saveButtonEl).off().on("click", "#favBtn", function (event) {
     event.preventDefault()
-  
+
     var tempArray = JSON.parse(localStorage.getItem("cocktail-favorites"));
     if (tempArray === null) {
       tempArray = [];
@@ -196,11 +205,12 @@ $(resultsBoxEl).off("click").on("click", ".searchButton", function(){
       if (tempArray[i].name === selectedDrink.name) {
         tempArray.splice(i, 1)
         // tempArray.splice(tempArray.indexOf(selectedDrink), 1)
-        console.log("already in array")}
-    } 
+        console.log("already in array")
+      }
+    }
     tempArray.unshift(selectedDrink)
     localStorage.setItem("cocktail-favorites", JSON.stringify(tempArray))
   })
-  
+
 
 })

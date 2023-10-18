@@ -7,38 +7,69 @@ header{
   background-color: #171c2d;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+#favBtnLink {
+  position: absolute; 
+  right: 10px;
+}
+
+#favBtnLink button {
+  border-radius: 15%;
+  font-size: 20px;
+  background-color: #F9982F;
+  padding: 8px;
+  color:#171c2d;
+  border: none;
+}
+
+#favBtnLink button:hover {
+  background-color: #EAB56F;
 }
 
 h1{
   color: #e37239;
 }
 
-main{
+.form{
   background-color: #e37239;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
+
 
 #user-choice{
   background-color: #f9982f;
 }
 
-#results-box{
-  background-color: #e37239;
-
+#results-box,
+#drinkList {
+  background-color: #254252;
 }
 
-#drink-box{
-  color: #171c2d;
+#results-box{
+  margin: 20px;
+}
 
+#drinkList {
+  display: flex;
+  justify-content: left;
+}
+
+.eachDrink {
+  padding: 10px;
+}
+
+#drink-box {
+  color: white;
 }
 
 #recents{
   background-color: #eab56f;
-
 }
 
-/* JACKSON YOU CAN DELETE THIS IF YOU WANT */
+
 img {
-  width: 100px;
+  width: 100%;
 }
