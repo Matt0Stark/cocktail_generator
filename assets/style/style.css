@@ -73,3 +73,20 @@ h1{
 img {
   width: 100%;
 }
+
+@media (max-width: 480px) {
+  .form{
+    flex-flow: column wrap;
+    align-content: center;
+  }
+
+  #favBtnLink {
+    position: static;
+  }
+
+  header{
+    flex-flow: column wrap;
+    align-content: center;
+    padding: 20px 0px;
+  }
+}
