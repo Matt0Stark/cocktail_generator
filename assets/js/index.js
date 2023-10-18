@@ -5,7 +5,6 @@ var h2El = document.querySelector("h2")
 
 // -------------------------------------------------------
 // BEGINING OF 21+ CODE
-// CODED BY STARK INDUSTRIES
 // -------------------------------------------------------
 var ageAppropriate = false;
 
@@ -66,13 +65,10 @@ nameForm.html(
     if (item1.val() === "") {
       return "";
     } else if  (item1.val() !== "" && item2.val() === "" && item3.val() === ""){
-      console.log("one ingredient")
       searchNinjaApiByName("ingredients=" + item1.val())
     } else if  (item1.val() !== "" && item2.val() !== "" && item3.val() === ""){
-      console.log("two ingredient")
       searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val())
     } else if  (item1.val() !== "" && item2.val() !== "" && item3.val() !== ""){
-      console.log("three ingredient")
       searchNinjaApiByName("ingredients=" + item1.val() + "," + item2.val() + "," + item3.val())
     } else {
       return "";
@@ -94,7 +90,6 @@ nameForm.html(
 
 // -------------------------------------------------------
 // BEGINING OF API CODE
-// Assisted by Katie
 // -------------------------------------------------------
 let drinkArray = []
 
@@ -140,8 +135,7 @@ function requestImage(drink) {
 
 
 // -------------------------------------------------------
-// BEGINNING OF SEARCH RESULTS MAIN
-// CODED BY GRIFFIN THOMAS
+// BEGINNING OF SEARCH RESULTS
 // -------------------------------------------------------
 
 var drinkListEl = $("#drinkList")
@@ -154,7 +148,6 @@ function displaySearch(searchResults) {
       $("<button></button>").addClass("searchButton").append(
         $("<img></img>").attr("src", searchResults[i].url),
         $("<p></p>").text(searchResults[i].name),
-        console.log(searchResults[i].url)
       ).attr("data-index", i)
     )
     )
@@ -172,15 +165,14 @@ var recipeEl = $(".recipe")
 
 var saveButtonEl = $("#searched-drink-details")
 
-$(resultsBoxEl).on("click", ".searchButton", function(){
+$(resultsBoxEl).off("click").on("click", ".searchButton", function(){
   var searchDrinkIndex = (parseInt($(this).attr("data-index")))
   var selectedDrink = (drinkArray[searchDrinkIndex])
-  drinkNameEl.text(selectedDrink.name)
 
-  console.log(selectedDrink.url)
+  // Populate Modal
+  drinkNameEl.text(selectedDrink.name)
   drinkImgEl.attr("src", selectedDrink.url)
   recipeEl.text(selectedDrink.instructions)
-
   ingredientsListEl.empty()
   for (var i = 0; i < selectedDrink.ingredients.length; i++){
     ingredientsListEl.append(
@@ -188,14 +180,26 @@ $(resultsBoxEl).on("click", ".searchButton", function(){
     )
   }
   recipeEl.text(selectedDrink.instructions)
-  // Call modal
+
+  // Call modal to show
   $("#searched-drink-details").modal("show")
 
   // Add to favorites button
-  $(saveButtonEl).on("click", "#favBtn", function(){
-    console.log("save button clicked")
+  $(saveButtonEl).off().on("click", "#favBtn", function(event){
+    event.preventDefault()
   
-    addToFav(selectedDrink)
+    var tempArray = JSON.parse(localStorage.getItem("cocktail-favorites"));
+    if (tempArray === null) {
+      tempArray = [];
+    }
+    for (var i = 0; i < tempArray.length; i++) {
+      if (tempArray[i].name === selectedDrink.name) {
+        tempArray.splice(i, 1)
+        // tempArray.splice(tempArray.indexOf(selectedDrink), 1)
+        console.log("already in array")}
+    } 
+    tempArray.unshift(selectedDrink)
+    localStorage.setItem("cocktail-favorites", JSON.stringify(tempArray))
   })
   
 

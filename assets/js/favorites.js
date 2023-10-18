@@ -24,7 +24,7 @@ function displayFavorites() {
     $(favoritesContainer).append(
       $("<div></div>").addClass("drink-container col-6 col-md-3 col-lg-2").append(
         $("<button></button>").addClass("drink-card").append(
-          $("<img></img>").attr("src", favoritesArrayTwo[i].url),
+          $("<img></img>").attr("src", favoritesArrayTwo[i].url.replace("./assets", "..")),
           $("<p></p>").text(favoritesArrayTwo[i].name),
         ).attr("data-index", i)
       ).append(
@@ -41,7 +41,7 @@ $(favoritesContainer).on("click", ".removeBtn", function () {
   $("#removeModal").modal("show")
   // remove favorite button
   $(document).ready(function () {
-    $("#answer-remove").click(function () {
+    $("#answer-remove").off().click(function () {
       // Remove that index from the array
       favoritesArrayTwo.splice(favoritesIndex, 1)
       // Save array back to local storage
@@ -64,7 +64,6 @@ $(favoritesContainer).on("click", ".drink-card", function () {
   drinkImgEl.attr("src", selectedDrink.url)
   ingredientsListEl.empty()
   for (var i = 0; i < selectedDrink.ingredients.length; i++){
-
     ingredientsListEl.append(
       $("<li></li>").text(selectedDrink.ingredients[i])
     )
