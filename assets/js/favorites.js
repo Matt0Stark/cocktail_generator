@@ -54,14 +54,14 @@ $(favoritesContainer).on("click", ".removeBtn", function () {
 
 displayFavorites();
 
-// Listens for click of drink cards
+// Listens for click of drink cards and show Modal
 $(favoritesContainer).on("click", ".drink-card", function () {
   console.log("card btn clicked")
   var drinkIndex = (parseInt($(this).attr("data-index")))
   var selectedDrink = (favoritesArrayTwo[drinkIndex])
   drinkNameEl.text(selectedDrink.name)
 
-  drinkImgEl.attr("src", selectedDrink.url)
+  drinkImgEl.attr("src", selectedDrink.url.replace("./assets", ".."))
   ingredientsListEl.empty()
   for (var i = 0; i < selectedDrink.ingredients.length; i++){
     ingredientsListEl.append(
