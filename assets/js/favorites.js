@@ -28,7 +28,7 @@ function displayFavorites() {
           $("<p></p>").text(favoritesArrayTwo[i].name),
         ).attr("data-index", i)
       ).append(
-        $("<button></button>").addClass("removeBtn").attr("data-index", i).text("remove")
+        $("<button></button>").addClass("removeBtn").attr("data-index", i).text("X")
       )
     )
 }
