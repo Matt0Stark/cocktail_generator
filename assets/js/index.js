@@ -1,11 +1,4 @@
-// Functions only needed for the main page (index.html)
-// var h2El = document.querySelector("h2")
 
-// var drinkSearchArray;
-
-// -------------------------------------------------------
-// BEGINING OF 21+ CODE
-// -------------------------------------------------------
 var ageAppropriate = false;
 
 //yes button --> stores are approp answer as true under the key ageAnswer
@@ -92,14 +85,6 @@ nameForm.on('submit', findName);
 partsForm.on('submit', findParts);
 
 
-// -------------------------------------------------------
-// END OF 21+ CODE
-// -------------------------------------------------------
-
-
-// -------------------------------------------------------
-// BEGINING OF API CODE
-// -------------------------------------------------------
 let drinkArray = []
 
 // Searches Ninja's Cocktail Api for specified drink name
@@ -129,7 +114,7 @@ function requestImage(drink) {
     })
     .then(function grabImgUrl(data) {
       if (data.drinks === null) {
-        drink.url = "./assets/images/whiterussian.png";
+        drink.url = "./assets/images/alldrinks.png";
       } else {
         var drinkUrl = data.drinks[0].strDrinkThumb;
         drink.url = drinkUrl;
@@ -137,15 +122,7 @@ function requestImage(drink) {
       return drink
     })
 }
-// -------------------------------------------------------
-// END OF API CODE
-// -------------------------------------------------------
 
-
-
-// -------------------------------------------------------
-// BEGINNING OF SEARCH RESULTS
-// -------------------------------------------------------
 
 var drinkListEl = $("#drinkList")
 
@@ -162,9 +139,6 @@ function displaySearch(searchResults) {
     ).addClass("row")
 }
 
-//-------------------------------------
-// END OF SEARCH RESULTS MAIN
-//-------------------------------------
 
 var resultsBoxEl = $("#results-box")
 var drinkNameEl = $(".drink-name")
@@ -204,7 +178,6 @@ $(resultsBoxEl).off("click").on("click", ".searchButton", function () {
     for (var i = 0; i < tempArray.length; i++) {
       if (tempArray[i].name === selectedDrink.name) {
         tempArray.splice(i, 1)
-        // tempArray.splice(tempArray.indexOf(selectedDrink), 1)
         console.log("already in array")
       }
     }

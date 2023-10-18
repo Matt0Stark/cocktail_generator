@@ -23,12 +23,12 @@ function displayFavorites() {
   for (var i = 0; i < favoritesArrayTwo.length; i++)
     $(favoritesContainer).append(
       $("<div></div>").addClass("drink-container col-6 col-md-3 col-lg-2").append(
-        $("<button></button>").addClass("drink-card").append(
+        $("<div></div>").addClass("drink-card").append(
           $("<img></img>").attr("src", favoritesArrayTwo[i].url.replace("./assets", "..")),
           $("<p></p>").text(favoritesArrayTwo[i].name),
         ).attr("data-index", i)
       ).append(
-        $("<button></button>").addClass("removeBtn").attr("data-index", i).text("remove")
+        $("<button></button>").addClass("removeBtn").attr("data-index", i).text("X")
       )
     )
 }
@@ -54,14 +54,14 @@ $(favoritesContainer).on("click", ".removeBtn", function () {
 
 displayFavorites();
 
-// Listens for click of drink cards
+// Listens for click of drink cards and show Modal
 $(favoritesContainer).on("click", ".drink-card", function () {
   console.log("card btn clicked")
   var drinkIndex = (parseInt($(this).attr("data-index")))
   var selectedDrink = (favoritesArrayTwo[drinkIndex])
   drinkNameEl.text(selectedDrink.name)
 
-  drinkImgEl.attr("src", selectedDrink.url)
+  drinkImgEl.attr("src", selectedDrink.url.replace("./assets", ".."))
   ingredientsListEl.empty()
   for (var i = 0; i < selectedDrink.ingredients.length; i++){
     ingredientsListEl.append(

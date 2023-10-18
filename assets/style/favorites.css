@@ -1,17 +1,22 @@
 body{
-  background-color: #e37239;
+  background-color: #254252;
 }
 
 main{
-  background-color: #f9982f;
+  background-color: #254252;
   display: contents, space-evenly;
   align-items: center;
   padding: 30px;
 }
 
+header {
+  background-color: #e37239;
+  padding: 10px 0px 10px 0px
+}
+
 h1 {
   text-align: center;
-  -webkit-text-fill-color: #254252;
+  -webkit-text-fill-color: #171c2d;
   -webkit-text-stroke: 5px, #e37239;
 }
 
@@ -19,17 +24,51 @@ img {
   width: 100%;
 }
 
+
+.removeBtn {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border: none;
+  background-color: rgba(23, 28, 45, 0.5);
+  color: white;
+}
+
+
+.removeBtn:hover {
+  background-color: rgba(255, 255, 255);
+  color: red;
+}
+
 .drink-container {
-  border: 5px solid #254252;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  border: 5px solid #e37239;
+  background-color: #e37239;
+  margin: 10px;
   display: block;
+  position: relative;
+  padding: 0px
 }
 
 .drink-card {
   padding: 0px;
   font-size: 1.3rem;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  background-color: #EAB56F;
+  cursor: pointer;
 }
+
+.drink-card:hover, .drink-card:active {
+  box-shadow: 0 0 20px white;
+}
+
+.drink-card p {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 0px;
+}
+
 
 #favoritesList {
   text-align: center;
@@ -49,5 +88,23 @@ img {
   display: flex;
   justify-content: center;
   justify-content: space-evenly;
+}
+
+#returnBtnLink {
+  position: absolute; 
+  left: 10px;
+}
+
+#returnBtnLink button {
+  border-radius: 15%;
+  font-size: 20px;
+  background-color: #171c2d;
+  padding: 8px;
+  color:#e37239;
+  border: none;
+}
+
+#returnBtnLink button:hover {
+  background-color: #254252;
 }
 
