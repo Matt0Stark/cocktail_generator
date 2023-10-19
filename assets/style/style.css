@@ -90,3 +90,12 @@ img {
     padding: 20px 0px;
   }
 }
+
+
+/*-----------------------------------------*/
+/* GRIFFS CODE TO ADD HIGHLIGHT IN INDEX SEARCH RESULTS
+/*-----------------------------------------*/
+
+.drink-card:hover, .drink-card:active {
+  box-shadow: 0 0 20px white;
+}
